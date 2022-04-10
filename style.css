@@ -1,0 +1,290 @@
+@font-face {
+    font-family: "Quicksand";
+    src: url("fonts/Quicksand-Medium.ttf");
+}
+
+@font-face {
+    font-family: "HoneyScript";
+    src: url("fonts/HoneyScript-Light.ttf");
+}
+
+@font-face {
+    font-family: "Roboto";
+    src: url("fonts/Roboto-Regular.ttf");
+}
+
+@font-face {
+    font-family: "Candara";
+    src: url("fonts/Candara.ttf");
+}
+
+* {
+    font-family: "Quicksand";
+    font-size: 14px;
+}
+
+.main-body {
+    background-image: url("resources/background-body.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.logo {
+    height: 100px;
+    background-image: url("resources/logo.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+.background {
+    background-image: url("resources/background.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+
+.title01 {
+    font-family: "HoneyScript";
+    font-size: 30px;
+    letter-spacing: 3px;
+}
+
+.title02 {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.label1 {
+    font-size: 16px;
+}
+
+.label2 {
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.underline-when-hover:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.sign-out {
+    color: crimson;
+}
+
+.sign-out:hover {
+    color: #111;
+}
+.cart-icon {
+    height: 25px;
+    background-image: url("resources/cartico.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+
+.hr-break-1 {
+    border-style: solid;
+    border-color: rgb(218, 218, 218);
+    border-width: 3px;
+    margin-top: 10px;
+}
+
+.logo-img {
+    height: 60px;
+    background-image: url("resources/logo.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+
+.search-btn {
+    height: 43px;
+}
+
+.link-1 {
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.poster-img-1 {
+    height: 500px;
+    background-repeat: no-repeat;
+}
+
+.poster-caption {
+    margin-bottom: 150px;
+}
+
+.poster-caption-1 {
+    margin-bottom: 70px;
+    margin-right: 250px;
+}
+
+.poster-title {
+    font-size: 50px;
+    color: black;
+}
+
+.poster-text {
+    font-size: 20px;
+    color: rgb(58, 58, 58);
+}
+
+.link2 {
+    text-decoration: none;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.link2:hover {
+    text-decoration: underline;
+}
+
+.card-img-top {
+    height: 25vh;
+}
+
+.side {
+    float: left;
+}
+
+.lbl1 {
+    font-size: 16px;
+}
+
+.pm1 {
+    height: 65px;
+    background-image: url("resources/payment_method_images/paypal_img.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.pm2 {
+    height: 65px;
+    background-image: url("resources/payment_method_images/visa_img.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.pm3 {
+    height: 65px;
+    background-image: url("resources/payment_method_images/mastercard_img.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.pm4 {
+    height: 65px;
+    background-image: url("resources/payment_method_images/american_express_img.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.pagination {
+    display: inline-block;
+}
+
+.pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    cursor: pointer;
+    user-select: none;
+}
+
+.pagination a.active {
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 5px;
+}
+
+.pagination a:hover:not(.active) {
+    background-color: #ddd;
+    border-radius: 5px;
+}
+
+
+/* Pagination */
+
+.search-btn1 {
+    width: 100%;
+}
+
+
+/* Single Product View CSS */
+
+.singleproduct {
+    padding-top: 65px;
+    padding-bottom: 145px;
+    background-color: #fff;
+    padding: 20px;
+}
+
+.product_qty {
+    width: 300px;
+    height: 45px;
+    padding: 7px;
+}
+
+.qty_buttons {
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 30px;
+    border: 1px solid #e5e5e5;
+    padding: 2px;
+}
+
+.qty_inc,
+.qty_dec {
+    width: 100%;
+    height: 50%;
+    cursor: pointer;
+    justify-content: flex-end;
+}
+
+.qty_inc {
+    padding-bottom: 2px;
+    border-top-right-radius: 5px;
+}
+
+.qty_dec {
+    padding-top: 2px;
+    border-bottom-right-radius: 5px;
+}
+
+
+/* Single Product View CSS */
+
+
+/* Watchlist */
+
+.emptyview {
+    height: 400px;
+    background-image: url("resources/watchlistEmptyView.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+
+
+/* Watchlist */
+
+.emptycart {
+    height: 200px;
+    background-image: url("resources/emptycart.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+
+.invoiceHeaderImg {
+    height: 80px;
+    background-image: url("resources/logo.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
