@@ -138,7 +138,8 @@ if (isset($_GET["id"])) {
                                                 <!-- Price -->
                                                 <div class="col-12 d-inline-block">
                                                     <label class="fw-bold fs-4 mt-1">Rs.<?php echo $pd["price"]; ?>.00</label>&nbsp;&nbsp;&nbsp;
-                                                    <label class="fw-bold fs-6 mt-1 text-danger"><del>Rs.<?php $p = $pd["price"];
+                                                    <label class="fw-bold fs-6 mt-1 text-danger"><del>Rs.<?php
+                                                                                                            $p = $pd["price"];
                                                                                                             $n = ($pd["price"] / 100)  * 5;
                                                                                                             $newval = $p  + $n;
                                                                                                             echo $newval; ?>.00</del></label>

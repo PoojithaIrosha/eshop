@@ -173,15 +173,21 @@ require "connection.php";
                                                     <!-- Watchlist Button -->
                                                     <?php
 
-                                                    $watchlistrs = Database::search("SELECT * FROM watchlist WHERE `product_id`='" . $product["id"] . "' AND `user_email`='" . $_SESSION["u"]["email"] . "'");
-                                                    if ($watchlistrs->num_rows == 1) {
-                                                    ?>
-                                                        <a onclick="addToWatchlist('<?php echo $product['id']; ?>');" class="btn btn-secondary col-12 mt-1"><i class="bi bi-heart-fill text-danger " id="<?php echo "heart" . $product['id']; ?>"></i></a>
-                                                    <?php
-                                                    } else {
-                                                    ?>
+                                                    if(isset($_SESSION["u"])) {
+                                                        $watchlistrs = Database::search("SELECT * FROM watchlist WHERE `product_id`='" . $product["id"] . "' AND `user_email`='" . $_SESSION["u"]["email"] . "'");
+                                                        if ($watchlistrs->num_rows == 1) {
+                                                            ?>
+                                                            <a onclick="addToWatchlist('<?php echo $product['id']; ?>');" class="btn btn-secondary col-12 mt-1"><i class="bi bi-heart-fill text-danger " id="<?php echo "heart" . $product['id']; ?>"></i></a>
+                                                            <?php
+                                                        } else {
+                                                            ?>
+                                                            <a onclick="addToWatchlist('<?php echo $product['id']; ?>');" class="btn btn-secondary col-12 mt-1"><i class="bi bi-heart-fill text-white" id="<?php echo "heart" . $product['id']; ?>"></i></a>
+                                                            <?php
+                                                        }
+                                                    }else {
+                                                        ?>
                                                         <a onclick="addToWatchlist('<?php echo $product['id']; ?>');" class="btn btn-secondary col-12 mt-1"><i class="bi bi-heart-fill text-white" id="<?php echo "heart" . $product['id']; ?>"></i></a>
-                                                    <?php
+                                                        <?php
                                                     }
                                                     ?>
                                                     <!-- Watchlist Button -->

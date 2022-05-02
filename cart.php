@@ -15,22 +15,22 @@ require "connection.php";
     <link rel="icon" href="resources/logo.svg" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
 </head>
+<?php
 
+if (isset($_SESSION["u"])) {
+    $mail = $_SESSION["u"]["email"];
+
+    $total = "0";
+    $subtotal = "0";
+    $shipping = 0;
+?>
 <body>
 
     <div class="container-fluid">
         <div class="row">
-            <?php
-            require "header.php";
+            <?php require "header.php"; ?>
 
-            if (isset($_SESSION["u"])) {
-                $mail = $_SESSION["u"]["email"];
 
-                $total = "0";
-                $subtotal = "0";
-                $shipping = 0;
-            }
-            ?>
 
             <div class="col-12 pt-2" style="background-color: #E3E5E4;">
                 <nav aria-label="breadcrumb">
@@ -282,5 +282,16 @@ require "connection.php";
         })
     </script>
 </body>
+<?php
+} else {
+    ?>
+    <script>
+    alert("You have to sign in or sign up first.")
+        window.location = "signInSignUp.php";
+    </script>
+<?php
+}
+?>
+
 
 </html>

@@ -33,7 +33,6 @@ require "connection.php";
                             <div class="col-2 mt-2">
                                 <div class="mb-3 logo-img"></div>
                             </div>
-
                             <div class="col-10">
                                 <label class="text-text-black-50 fw-bold fs-2 mt-3">Advanced Search</label>
                             </div>

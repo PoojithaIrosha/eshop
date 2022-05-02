@@ -13,7 +13,6 @@
             <div class="col-12 d-flex flex-column d-lg-block justify-content-center justify-content-lg-start col-lg-4 offset-lg-1  align-items-center">
                 <span class="text-lg-start label1"><b>Welcome</b>
                     <?php
-                    session_start();
                     if (isset($_SESSION["u"])) {
                         $data = $_SESSION["u"];
                     ?>

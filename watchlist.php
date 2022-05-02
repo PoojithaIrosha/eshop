@@ -108,7 +108,7 @@ if (isset($_SESSION["u"])) {
                                                     $pf = $prod_details->fetch_assoc();
                                                     $pid = $pf["id"];
                                             ?>
-                                                    <div class="card mb-3 mx-0 mx-lg-2  col-12">
+                                                    <div class="card mb-3 mx-0 mx-lg-2 col-12">
                                                         <div class="row g-0">
                                                             <div class="col-md-4">
 
