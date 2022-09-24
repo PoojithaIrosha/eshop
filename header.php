@@ -53,7 +53,7 @@
                             <li><a class="dropdown-item" href="myProducts.php">My Products</a></li>
                             <li><a class="dropdown-item" href="watchlist.php">Watch List</a></li>
                             <li><a class="dropdown-item" href="#">Purchase History</a></li>
-                            <li><a class="dropdown-item" href="#">Messages</a></li>
+                            <li><a class="dropdown-item" href="message.php">Messages</a></li>
                             <li><a class="dropdown-item" href="#">Saved</a></li>
                         </ul>
                     </div>

@@ -56,6 +56,13 @@ $query1 = $query;
             $selectedrs = Database::search($query1);
             $srn = $selectedrs->num_rows;
 
+
+            // Number of products in the result set
+            // results_per_page
+            // calculate the no of pages = ceil(number_of_products/results_per_page)
+            // viewd result count = ($pageno - 1) * results per page
+
+
             while ($ps = $selectedrs->fetch_assoc()) {
 
 

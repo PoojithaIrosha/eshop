@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,8 +35,6 @@ if (isset($_GET["id"])) {
         $pd = $productrs->fetch_assoc();
 
 ?>
-
-
 
         <body>
 
@@ -137,7 +139,7 @@ if (isset($_GET["id"])) {
 
                                                 <!-- Price -->
                                                 <div class="col-12 d-inline-block">
-                                                    <label class="fw-bold fs-4 mt-1">Rs.<?php echo $pd["price"]; ?>.00</label>&nbsp;&nbsp;&nbsp;
+                                                    <label class="fw-bold fs-4 mt-1" id="unit_price">Rs.<?php echo $pd["price"]; ?>.00</label>&nbsp;&nbsp;&nbsp;
                                                     <label class="fw-bold fs-6 mt-1 text-danger"><del>Rs.<?php
                                                                                                             $p = $pd["price"];
                                                                                                             $n = ($pd["price"] / 100)  * 5;
@@ -227,7 +229,7 @@ if (isset($_GET["id"])) {
                                                                         </div>
 
                                                                         <div class="col-4 col-lg-5 d-grid">
-                                                                            <button class="btn btn-success">Buy Now</button>
+                                                                            <button class="btn btn-success" onclick="buynow(<?php echo $pid; ?>);">Buy Now</button>
                                                                         </div>
 
                                                                         <div class="col-4 col-lg-2 d-grid">
@@ -298,48 +300,199 @@ if (isset($_GET["id"])) {
                                     </div>
                                 </div>
 
-                                <div class="col-12 bg-white">
-                                    <div class="row d-block me-0 mt-4 mb-3 border border-1 border-start-0 border-end-0 border-top-0 border-primary">
-                                        <div class="col-md-6 ">
-                                            <span class="fs-3 fw-bold">Product Details</span>
+                                <div class="col-12">
+                                    <div class="row">
+                                        <div class="col-12 col-lg-6 bg-white">
+                                            <div class="row d-block me-0 mt-4 mb-3 border border-1 border-start-0 border-end-0 border-top-0 border-primary">
+                                                <div class="col-md-6 ">
+                                                    <span class="fs-3 fw-bold">Product Details</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12 col-lg-6 bg-white">
+                                            <div class="row d-block me-0 mt-4 mb-3 border border-1 border-start-0 border-end-0 border-top-0 border-primary">
+                                                <div class="col-md-6 ">
+                                                    <span class="fs-3 fw-bold">Send Feedback</span>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="col-12 bg-white">
+                                <div class="col-12">
                                     <div class="row">
-                                        <div class="col-12">
-                                            <div class="row">
-                                                <div class="col-2">
-                                                    <label class="form-label fw-bold">Brand</label>
-                                                </div>
-                                                <div class="col-10">
-                                                    <label class="form-label"><?php echo $pd["bname"]; ?></label>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-2">
-                                                    <label class="form-label fw-bold">Model</label>
-                                                </div>
-                                                <div class="col-10">
-                                                    <label class="form-label"><?php echo $pd["mname"]; ?></label>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-2">
-                                                    <label class="form-label fw-bold">Description</label>
-                                                </div>
-                                                <div class="col-10">
 
-                                                    <textarea cols="60" rows="10" disabled><?php echo $pd["description"]; ?></textarea>
+                                        <div class="col-12 col-lg-6 bg-white border border-1 border-secondary">
+                                            <div class="row">
+                                                <div class="col-12 mt-3">
+                                                    <div class="row">
+                                                        <div class="col-2">
+                                                            <label class="form-label fw-bold">Brand</label>
+                                                        </div>
+                                                        <div class="col-10">
+                                                            <label class="form-label"><?php echo $pd["bname"]; ?></label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-2">
+                                                            <label class="form-label fw-bold">Model</label>
+                                                        </div>
+                                                        <div class="col-10">
+                                                            <label class="form-label"><?php echo $pd["mname"]; ?></label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-2">
+                                                            <label class="form-label fw-bold">Description</label>
+                                                        </div>
+                                                        <div class="col-10">
+
+                                                            <textarea cols="60" rows="10" disabled><?php echo $pd["description"]; ?></textarea>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
+
+                                        <div class="col-12 col-lg-6 bg-white border border-1 border-secondary">
+                                            <div class="row">
+                                                <div class="col-12 mt-3">
+                                                    <div class="row">
+
+                                                        <div class="col-12 col-lg-3">
+                                                            <label class="form-label">Feedback Type</label>
+                                                        </div>
+
+                                                        <div class="col-12 col-lg-3">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="r1" checked>
+                                                                <label class="form-check-label text-success fw-bold " for="r1">
+                                                                    Positive
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12 col-lg-3">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="r2">
+                                                                <label class="form-check-label text-warning fw-bold" for="r2">
+                                                                    Neutrals
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12 col-lg-3">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="r3">
+                                                                <label class="form-check-label text-danger fw-bold" for="r3">
+                                                                    Negative
+                                                                </label>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-12 mt-3">
+                                                    <div class="row">
+                                                        <div class="col-3">
+                                                            <label class="form-label fw-bold">Customer's Email</label>
+                                                        </div>
+                                                        <div class="col-8">
+                                                            <input id="e" type="email" class="form-control" placeholder="ex: john@example.com" value="<?php echo $_SESSION["u"]["email"]; ?>" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-12 mt-3 mb-3">
+
+                                                    <div class="row">
+                                                        <div class="col-3">
+                                                            <label class="form-label fw-bold">Customer's Feedback</label>
+                                                        </div>
+                                                        <div class="col-8">
+                                                            <textarea id="f" class="form-control" cols="30" rows="8"></textarea>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="col-12 offset-lg-3 col-lg-8 mt-2 mb-3 d-grid">
+                                                    <button class="btn btn-outline-primary" onclick="saveFeed(<?php echo $pid; ?>);">Send Feedback</button>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <hr class="border-secondary">
+                                </div>
+
+                                <div class="col-12">
+                                    <div class="row g-2">
+
+                                        <?php
+
+                                        $feedback_rs = Database::search("SELECT * FROM `feedback` INNER JOIN `user` ON `feedback`.`user_email` = `user`.`email` WHERE `product_id` ='" . $pid . "'");
+                                        while ($feedback_data = $feedback_rs->fetch_assoc()) {
+                                        ?>
+                                            <div class="col-12 col-lg-3 bg-white border border-1 border-danger rounded mx-2">
+                                                <div class="row">
+                                                    <div class="col-12 text-center">
+                                                        <span class="text-center fs-5 fw-bold text-primary"><?php echo $feedback_data["fname"] . " " . $feedback_data["lname"]; ?></span>
+                                                        <br>
+                                                        <span class="fs-6 fw-bold text-secondary"><?php echo $feedback_data["user_email"]; ?></span>
+                                                    </div>
+
+                                                    <div class="offset-1 col-10 text-center border border-1 border-warning rounded mt-3" style="height: 100px; overflow: auto;">
+                                                        <p class="fs-6 "><?php echo $feedback_data["feed"]; ?></p>
+                                                    </div>
+
+                                                    <div class="col-12 text-center mt-2 ">
+                                                        <span class="fs-6 text-black-50 fw-bold"><?php echo $feedback_data["date"]; ?></span>
+                                                    </div>
+
+                                                    <div class="col-12 mt-3 mb-3">
+                                                        <div class="row">
+                                                            <?php
+
+                                                            if ($feedback_data["type"] == 1) {
+                                                            ?>
+                                                                <div class="offset-1 col-10 bg-success text-center">
+                                                                    <span class="fs-5 fw-bold text-white">Positive Feedback</span>
+                                                                </div>
+                                                            <?php
+                                                            } else if ($feedback_data["type"] == 2) {
+                                                            ?>
+                                                                <div class="offset-1 col-10 bg-warning text-center">
+                                                                    <span class="fs-5 fw-bold text-white">Neutral Feedback</span>
+                                                                </div>
+                                                            <?php
+                                                            } else if ($feedback_data["type"] == 3) {
+                                                            ?>
+                                                                <div class="offset-1 col-10 bg-danger text-center">
+                                                                    <span class="fs-5 fw-bold text-white">Negative Feedback</span>
+                                                                </div>
+                                                            <?php
+                                                            }
+
+                                                            ?>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <?php
+                                        }
+
+                                        ?>
                                     </div>
                                 </div>
 
                             </div>
-
                         </div>
                     </div>
 

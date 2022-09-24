@@ -1,3 +1,13 @@
+<!--  -->
+<?php
+session_start();
+require "connection.php";
+
+$iid = $_GET["order_id"];
+
+?>
+<!--  -->
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,6 +40,8 @@
                 <button class="btn btn-dark me-2" onclick="printInvoice();">Print</button>
                 <button class="btn btn-danger me-2" onclick="generatePDF();">Export as PDF</button>
             </div>
+
+
 
             <div class="col-12">
                 <hr />
@@ -66,15 +78,28 @@
 
                             <div class="col-6">
                                 <h5 class="fw-bold">Invoice To:</h5>
-                                <h2>Lahiru Viraj</h2>
-                                <span>Colombo rd, Horana</span><br />
-                                <span>lahiru@gmail.com</span>
+                                <h2><?php echo $_SESSION["u"]["fname"] . " " . $_SESSION["u"]["lname"]; ?></h2>
+
+                                <?php
+
+                                $address_rs = Database::search("SELECT * FROM `user_has_address` INNER JOIN `city` ON `user_has_address`.`city_id` = `city`.`id` WHERE `user_email` = '" . $_SESSION["u"]["email"] . "'");
+                                $address_data = $address_rs->fetch_assoc();
+                                ?>
+
+                                <span><?php echo $address_data["line1"] . ", " . $address_data["line2"] . ", " . $address_data["name"] . "."; ?></span><br />
+                                <span class="fw-bold"><?php echo $_SESSION["u"]["email"]; ?></span>
                             </div>
 
                             <div class="col-6 text-end mt-4">
                                 <h1 class="text-primary">INVOICE 01</h1>
                                 <span class="fw-bold">Date & Time of Invoice :</span>&nbsp;
-                                <span class="fw-bold">2022-04-09 21:00:00</span>
+                                <?php
+
+                                $order_rs = Database::search("SELECT * FROM `invoice` WHERE `order_id` = '" . $iid . "'");
+                                $order_data = $order_rs->fetch_assoc();
+
+                                ?>
+                                <span class="fw-bold"><?php echo $order_data["date"]; ?></span>
                             </div>
 
                         </div>
@@ -94,15 +119,22 @@
 
                             <tbody>
                                 <tr style="height: 72px">
-                                    <td class="bg-primary text-white fs-3">01</td>
+                                    <td class="bg-primary text-white fs-3"><?php echo $order_data["id"]; ?></td>
                                     <td>
-                                        <span class="fw-bold p-2 text-primary text-decoration-underline">00000001</span>
+                                        <span class="fw-bold p-2 text-primary text-decoration-underline"><?php echo $order_data["order_id"]; ?></span>
                                         <br>
-                                        <span class="w-bold p-2 fs-3 text-primary ">Apple Iphone 13</span>
+
+                                        <?php
+
+                                        $product_rs = Database::search("SELECT * FROM `product` WHERE `id` = '" . $order_data["product_id"] . "'");
+                                        $product_data = $product_rs->fetch_assoc();
+
+                                        ?>
+                                        <span class="w-bold p-2 fs-3 text-primary "><?php echo $product_data["title"]; ?></span>
                                     </td>
-                                    <td class="text-end fs-6 pt-3 bg-secondary text-white">Rs.350000.00</td>
-                                    <td class="text-end fs-6 pt-3">1</td>
-                                    <td class="text-end fs-6 pt-3 bg-primary text-white">Rs.350000.00</td>
+                                    <td class="text-end fs-6 pt-3 bg-secondary text-white">Rs.<?php echo $product_data["price"]; ?>.00</td>
+                                    <td class="text-end fs-6 pt-3"><?php echo $order_data["qty"]; ?></td>
+                                    <td class="text-end fs-6 pt-3 bg-primary text-white">Rs.<?php echo $order_data["total"]; ?>.00</td>
                                 </tr>
                             </tbody>
 
@@ -110,17 +142,31 @@
                                 <tr>
                                     <td colspan="3" class="border-0"></td>
                                     <td class="text-end fs-5">SUBTOTAL</td>
-                                    <td class="text-end">Rs.350000.00</td>
+                                    <td class="text-end">Rs.<?php echo $order_data["total"]; ?>.00</td>
                                 </tr>
                                 <tr>
                                     <td colspan="3" class="border-0"></td>
                                     <td class="text-end fs-5 border-primary">DISCOUNT</td>
-                                    <td class="text-end border-primary">Rs.00.00</td>
+                                    <td class="text-end border-primary">Rs.
+                                        <?php
+                                        $discount;
+                                        if ($order_data["total"] > "250000") {
+                                            $discount = ($order_data["total"] / 100) * 1;
+                                            echo $discount;
+                                        } else if ($order_data["total"] > "500000") {
+                                            $discount = ($order_data["total"] / 100) * 2;
+                                            echo $discount;
+                                        } else if ($order_data["total"] > "100000") {
+                                            $discount = ($order_data["total"] / 100) * 5;
+                                            echo $discount;
+                                        }
+                                        ?>
+                                        .00</td>
                                 </tr>
                                 <tr>
                                     <td colspan="3" class="border-0"></td>
                                     <td class="text-end fs-5 fw-bold border-0 text-primary">GRAND TOTAL</td>
-                                    <td class="text-end border-0 text-primary fs-5">Rs.00.00</td>
+                                    <td class="text-end border-0 text-primary fs-5">Rs.<?php echo $order_data["total"] - $discount; ?>.00</td>
                                 </tr>
                             </tfoot>
                         </table>

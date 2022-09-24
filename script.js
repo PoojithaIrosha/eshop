@@ -23,7 +23,7 @@ function signUp() {
   // alert(mobile.value);
   // alert(gender.value);
 
-  let form = new FormData();
+  var form = new FormData();
   form.append("fname", fname.value);
   form.append("lname", lname.value);
   form.append("email", email.value);
@@ -31,11 +31,11 @@ function signUp() {
   form.append("mobile", mobile.value);
   form.append("gender", gender.value);
 
-  let r = new XMLHttpRequest();
+  var r = new XMLHttpRequest();
 
   r.onreadystatechange = function () {
     if (r.readyState === 4) {
-      let t = r.responseText;
+      var t = r.responseText;
       // alert(t);
       if (t === "success") {
         fname.value = "";
@@ -61,16 +61,16 @@ function signIn() {
   const password = document.getElementById("password2");
   const rememberMe = document.getElementById("rememberMe");
 
-  let form = new FormData();
+  var form = new FormData();
   form.append("email", email.value);
   form.append("password", password.value);
   form.append("rememberMe", rememberMe.checked);
 
-  let r = new XMLHttpRequest();
+  var r = new XMLHttpRequest();
 
   r.onreadystatechange = function () {
     if (r.readyState == 4) {
-      let t = r.responseText;
+      var t = r.responseText;
       if (t == "success") {
         window.location = "index.php";
       } else {
@@ -83,18 +83,18 @@ function signIn() {
   r.send(form);
 }
 
-let bm;
+var bm;
 
 function forgotpassword() {
-  let email = document.getElementById("email2");
+  var email = document.getElementById("email2");
 
-  let r = new XMLHttpRequest();
+  var r = new XMLHttpRequest();
   r.onreadystatechange = function () {
     if (r.readyState === 4) {
-      let t = r.responseText;
+      var t = r.responseText;
       if (t === "success") {
         alert("Verification Code Sent to your Email. Please check the inbox.");
-        let m = document.getElementById("forgotPasswordModal");
+        var m = document.getElementById("forgotPasswordModal");
         bm = new bootstrap.Modal(m);
         bm.show();
       } else {
@@ -108,8 +108,8 @@ function forgotpassword() {
 }
 
 function showPassword1() {
-  let np = document.getElementById("np");
-  let npb = document.getElementById("npb");
+  var np = document.getElementById("np");
+  var npb = document.getElementById("npb");
 
   if (npb.innerHTML == "Show") {
     np.type = "text";
@@ -121,8 +121,8 @@ function showPassword1() {
 }
 
 function showPassword2() {
-  let rnp = document.getElementById("rnp");
-  let rnpb = document.getElementById("rnpb");
+  var rnp = document.getElementById("rnp");
+  var rnpb = document.getElementById("rnpb");
 
   if (rnpb.innerHTML === "Show") {
     rnp.type = "text";
@@ -134,19 +134,19 @@ function showPassword2() {
 }
 
 function resetPassword() {
-  let e = document.getElementById("email2");
-  let np = document.getElementById("np");
-  let rnp = document.getElementById("rnp");
-  let vc = document.getElementById("vc");
+  var e = document.getElementById("email2");
+  var np = document.getElementById("np");
+  var rnp = document.getElementById("rnp");
+  var vc = document.getElementById("vc");
 
-  let form = new FormData();
+  var form = new FormData();
 
   form.append("e", e.value);
   form.append("np", np.value);
   form.append("rnp", rnp.value);
   form.append("vc", vc.value);
 
-  let r = new XMLHttpRequest();
+  var r = new XMLHttpRequest();
 
   r.onreadystatechange = function () {
     if (r.readyState === 4) {
@@ -165,12 +165,12 @@ function resetPassword() {
 }
 
 function signOut() {
-  let result = confirm("Are you sure you want to sign out?");
+  var result = confirm("Are you sure you want to sign out?");
   if (result) {
-    let r = new XMLHttpRequest();
+    var r = new XMLHttpRequest();
     r.onreadystatechange = function () {
       if (r.readyState == 4) {
-        let t = r.responseText;
+        var t = r.responseText;
         if (t == "success") {
           window.location = "index.php";
         }
@@ -179,37 +179,35 @@ function signOut() {
     r.open("GET", "SignOutProcess.php", true);
     r.send();
   }
-
-
 }
 
 function changeImage() {
-  let image = document.getElementById("profileimg"); // file chooser
-  let prev = document.getElementById("prev0"); // image tag
+  var image = document.getElementById("profileimg"); // file chooser
+  var prev = document.getElementById("prev0"); // image tag
 
   image.onchange = function () {
-    let file0 = this.files[0];
-    let url0 = window.URL.createObjectURL(file0);
+    var file0 = this.files[0];
+    var url0 = window.URL.createObjectURL(file0);
 
     prev.src = url0;
   };
 }
 
 function showConfirmModal() {
-  let bm = new bootstrap.Modal(document.getElementById("myModal"));
+  var bm = new bootstrap.Modal(document.getElementById("myModal"));
   bm.show();
 }
 
 function updateProfile() {
-  let fname = document.getElementById("fname");
-  let lname = document.getElementById("lname");
-  let mobile = document.getElementById("mobile");
-  let addressline1 = document.getElementById("addline1");
-  let addressline2 = document.getElementById("addline2");
-  let city = document.getElementById("usercity");
-  let image = document.getElementById("profileimg"); // file chooser
+  var fname = document.getElementById("fname");
+  var lname = document.getElementById("lname");
+  var mobile = document.getElementById("mobile");
+  var addressline1 = document.getElementById("addline1");
+  var addressline2 = document.getElementById("addline2");
+  var city = document.getElementById("usercity");
+  var image = document.getElementById("profileimg"); // file chooser
 
-  let form = new FormData();
+  var form = new FormData();
   form.append("f", fname.value);
   form.append("l", lname.value);
   form.append("m", mobile.value);
@@ -218,11 +216,12 @@ function updateProfile() {
   form.append("c", city.value);
   form.append("i", image.files[0]);
 
-  let r = new XMLHttpRequest();
+  var r = new XMLHttpRequest();
   r.onreadystatechange = function () {
     if (r.readyState == 4) {
-      let text = r.responseText;
+      var text = r.responseText;
       alert(text);
+      location.reload();
     }
   };
 
@@ -231,34 +230,34 @@ function updateProfile() {
 }
 
 function changeProductImg() {
-  let image = document.getElementById("imageUploader");
-  let view1 = document.getElementById("prev1");
-  let view2 = document.getElementById("prev2");
-  let view3 = document.getElementById("prev3");
+  var image = document.getElementById("imageUploader");
+  var view1 = document.getElementById("prev1");
+  var view2 = document.getElementById("prev2");
+  var view3 = document.getElementById("prev3");
 
   image.onchange = function () {
     if (this.files.length == 1) {
-      let file1 = this.files[0];
-      let url1 = window.URL.createObjectURL(file1);
+      var file1 = this.files[0];
+      var url1 = window.URL.createObjectURL(file1);
       view1.src = url1;
       view2.src = "resources/addproductimg.svg";
       view3.src = "resources/addproductimg.svg";
     } else if (this.files.length == 2) {
-      let file1 = this.files[0];
-      let file2 = this.files[1];
-      let url1 = window.URL.createObjectURL(file1);
-      let url2 = window.URL.createObjectURL(file2);
+      var file1 = this.files[0];
+      var file2 = this.files[1];
+      var url1 = window.URL.createObjectURL(file1);
+      var url2 = window.URL.createObjectURL(file2);
       view1.src = url1;
       view2.src = url2;
       view3.src = "resources/addproductimg.svg";
     } else if (this.files.length == 3) {
-      let file1 = this.files[0];
-      let file2 = this.files[1];
-      let file3 = this.files[2];
+      var file1 = this.files[0];
+      var file2 = this.files[1];
+      var file3 = this.files[2];
 
-      let url1 = window.URL.createObjectURL(file1);
-      let url2 = window.URL.createObjectURL(file2);
-      let url3 = window.URL.createObjectURL(file3);
+      var url1 = window.URL.createObjectURL(file1);
+      var url2 = window.URL.createObjectURL(file2);
+      var url3 = window.URL.createObjectURL(file3);
 
       view1.src = url1;
       view2.src = url2;
@@ -268,19 +267,19 @@ function changeProductImg() {
 }
 
 function addProduct() {
-  let category = document.getElementById("ca");
-  let brand = document.getElementById("br");
-  let model = document.getElementById("mo");
-  let title = document.getElementById("ti");
+  var category = document.getElementById("ca");
+  var brand = document.getElementById("br");
+  var model = document.getElementById("mo");
+  var title = document.getElementById("ti");
 
-  let condition;
+  var condition;
   if (document.getElementById("bn").checked) {
     condition = 1;
   } else if (document.getElementById("us").checked) {
     condition = 2;
   }
 
-  let color;
+  var color;
   if (document.getElementById("clr1").checked) {
     color = 1;
   } else if (document.getElementById("clr2").checked) {
@@ -295,14 +294,14 @@ function addProduct() {
     color = 6;
   }
 
-  let qty = document.getElementById("qty");
-  let price = document.getElementById("cost");
-  let delivery_within_colombo = document.getElementById("dwc");
-  let delivery_out_of_colombo = document.getElementById("doc");
-  let description = document.getElementById("desc");
-  let image = document.getElementById("imageUploader");
+  var qty = document.getElementById("qty");
+  var price = document.getElementById("cost");
+  var delivery_within_colombo = document.getElementById("dwc");
+  var delivery_out_of_colombo = document.getElementById("doc");
+  var description = document.getElementById("desc");
+  var image = document.getElementById("imageUploader");
 
-  let f = new FormData();
+  var f = new FormData();
 
   f.append("c", category.value);
   f.append("b", brand.value);
@@ -319,10 +318,10 @@ function addProduct() {
   f.append("img2", image.files[1]);
   f.append("img3", image.files[2]);
 
-  let request = new XMLHttpRequest();
+  var request = new XMLHttpRequest();
   request.onreadystatechange = function () {
     if (request.readyState == 4) {
-      let text = request.responseText;
+      var text = request.responseText;
       if (text == "success") {
         alert("Product Listed Successfully!");
 
@@ -352,11 +351,11 @@ function addProduct() {
 }
 
 function changeStatus(id) {
-  let productId = id;
-  let statusChange = document.getElementById("flexSwitchCheckChecked");
-  let statusLabel = document.getElementById("checkLabel" + productId);
+  var productId = id;
+  var statusChange = document.getElementById("flexSwitchCheckChecked");
+  var statusLabel = document.getElementById("checkLabel" + productId);
 
-  let status;
+  var status;
 
   if (statusChange.checked) {
     status = 1;
@@ -364,11 +363,11 @@ function changeStatus(id) {
     status = 0;
   }
 
-  let r = new XMLHttpRequest();
+  var r = new XMLHttpRequest();
 
   r.onreadystatechange = function () {
     if (r.readyState == 4) {
-      let text = r.responseText;
+      var text = r.responseText;
 
       if (text == "Deactivated") {
         statusLabel.innerHTML = "Make your product Active";
@@ -387,9 +386,9 @@ function changeStatus(id) {
 }
 
 function addFilters(page) {
-  let search = document.getElementById("s");
+  var search = document.getElementById("s");
 
-  let age;
+  var age;
   if (document.getElementById("n").checked) {
     age = 1;
   } else if (document.getElementById("o").checked) {
@@ -398,7 +397,7 @@ function addFilters(page) {
     age = 0;
   }
 
-  let qty;
+  var qty;
   if (document.getElementById("l").checked) {
     qty = 1;
   } else if (document.getElementById("h").checked) {
@@ -407,7 +406,7 @@ function addFilters(page) {
     qty = 0;
   }
 
-  let condition;
+  var condition;
   if (document.getElementById("b").checked) {
     condition = 1;
   } else if (document.getElementById("u").checked) {
@@ -416,18 +415,18 @@ function addFilters(page) {
     condition = 0;
   }
 
-  let form = new FormData();
+  var form = new FormData();
   form.append("s", search.value);
   form.append("a", age);
   form.append("q", qty);
   form.append("c", condition);
   form.append("page", page);
 
-  let r = new XMLHttpRequest();
+  var r = new XMLHttpRequest();
 
   r.onreadystatechange = function () {
     if (r.readyState == 4) {
-      let t = r.responseText;
+      var t = r.responseText;
       document.getElementById("sort").innerHTML = t;
     }
   };
@@ -441,13 +440,13 @@ function clearFilters() {
 }
 
 function sendId(id) {
-  let id1 = id;
+  var id1 = id;
 
-  let r = new XMLHttpRequest();
+  var r = new XMLHttpRequest();
 
   r.onreadystatechange = function () {
     if (r.readyState == 4) {
-      let t = r.responseText;
+      var t = r.responseText;
       if (t == "success") {
         window.location = "updateProduct.php";
       }
@@ -459,15 +458,15 @@ function sendId(id) {
 }
 
 function updateProduct() {
-  let title = document.getElementById("ti");
-  let qty = document.getElementById("qty");
-  let cost = document.getElementById("cost");
-  let delivery_within_colombo = document.getElementById("dwc");
-  let delivery_out_of_colombo = document.getElementById("doc");
-  let description = document.getElementById("desc");
-  let image = document.getElementById("imageUploader");
+  var title = document.getElementById("ti");
+  var qty = document.getElementById("qty");
+  var cost = document.getElementById("cost");
+  var delivery_within_colombo = document.getElementById("dwc");
+  var delivery_out_of_colombo = document.getElementById("doc");
+  var description = document.getElementById("desc");
+  var image = document.getElementById("imageUploader");
 
-  let form = new FormData();
+  var form = new FormData();
   form.append("t", title.value);
   form.append("qty", qty.value);
   form.append("c", cost.value);
@@ -478,10 +477,10 @@ function updateProduct() {
   form.append("i2", image.files[1]);
   form.append("i3", image.files[2]);
 
-  let r = new XMLHttpRequest();
+  var r = new XMLHttpRequest();
   r.onreadystatechange = function () {
     if (r.readyState == 4) {
-      let t = r.responseText;
+      var t = r.responseText;
       alert(t);
     }
   };
@@ -491,16 +490,17 @@ function updateProduct() {
 
 // Advanced Search
 function advancedSearch(x) {
-  let searchtxt = document.getElementById("s1");
-  let category = document.getElementById("ca1");
-  let brand = document.getElementById("br1");
-  let model = document.getElementById("mo1");
-  let condition = document.getElementById("co1");
-  let colour = document.getElementById("col1");
-  let priceFrom = document.getElementById("pf1");
-  let priceTo = document.getElementById("pt1");
+  var searchtxt = document.getElementById("s1");
+  var category = document.getElementById("ca1");
+  var brand = document.getElementById("br1");
+  var model = document.getElementById("mo1");
+  var condition = document.getElementById("co1");
+  var colour = document.getElementById("col1");
+  var priceFrom = document.getElementById("pf1");
+  var priceTo = document.getElementById("pt1");
+  var sort = document.getElementById("sort");
 
-  let form = new FormData();
+  var form = new FormData();
   form.append("s", searchtxt.value);
   form.append("ca", category.value);
   form.append("b", brand.value);
@@ -510,12 +510,13 @@ function advancedSearch(x) {
   form.append("pf", priceFrom.value);
   form.append("pt", priceTo.value);
   form.append("page", x);
+  form.append("sort", sort.value);
 
-  let request = new XMLHttpRequest();
+  var request = new XMLHttpRequest();
   request.onreadystatechange = function () {
     if (request.readyState == 4) {
-      let text = request.responseText;
-      let results = (document.getElementById("results").innerHTML = text);
+      var text = request.responseText;
+      var results = (document.getElementById("results").innerHTML = text);
     }
   };
   request.open("POST", "advancedSearchProcess.php", true);
@@ -524,18 +525,18 @@ function advancedSearch(x) {
 
 // Basic Search
 function basicSearch(x) {
-  let searchText = document.getElementById("basic_search_txt").value;
-  let searchSelect = document.getElementById("basic_search_select").value;
+  var searchText = document.getElementById("basic_search_txt").value;
+  var searchSelect = document.getElementById("basic_search_select").value;
 
-  let form = new FormData();
+  var form = new FormData();
   form.append("st", searchText);
   form.append("ss", searchSelect);
   form.append("page", x);
 
-  let r = new XMLHttpRequest();
+  var r = new XMLHttpRequest();
   r.onreadystatechange = function () {
     if (r.readyState == 4) {
-      let t = r.responseText;
+      var t = r.responseText;
       document.getElementById("basicSearchResult").innerHTML = t;
     }
   };
@@ -545,19 +546,19 @@ function basicSearch(x) {
 // Basic Search
 
 function loadmainimg(id) {
-  let pid = id;
-  let img = document.getElementById("pimg" + pid).src;
-  let mainimg = document.getElementById("mainimg");
+  var pid = id;
+  var img = document.getElementById("pimg" + pid).src;
+  var mainimg = document.getElementById("mainimg");
 
   mainimg.style.backgroundImage = "url(" + img + ")";
 }
 
 function qty_inc(qty) {
-  let qty1 = qty;
-  let input = document.getElementById("qtyinput");
+  var qty1 = qty;
+  var input = document.getElementById("qtyinput");
 
   if (input.value < qty1) {
-    let newvalue = parseInt(input.value) + 1;
+    var newvalue = parseInt(input.value) + 1;
     input.value = newvalue.toString();
   } else {
     alert("Maximum Quantity has Achieved");
@@ -565,10 +566,10 @@ function qty_inc(qty) {
 }
 
 function qty_dec() {
-  let input = document.getElementById("qtyinput");
+  var input = document.getElementById("qtyinput");
 
   if (input.value > 1) {
-    let newvalue = parseInt(input.value) - 1;
+    var newvalue = parseInt(input.value) - 1;
     input.value = newvalue.toString();
   } else {
     alert("Minimum Quantity has Achieved");
@@ -576,7 +577,7 @@ function qty_dec() {
 }
 
 function check_val(qty) {
-  let input = document.getElementById("qtyinput");
+  var input = document.getElementById("qtyinput");
 
   if (input.value > qty) {
     alert("Insufficient Quantity");
@@ -586,19 +587,19 @@ function check_val(qty) {
 
 // Watchlist
 function addToWatchlist(id) {
-  let wid = id;
+  var wid = id;
 
-  let r = new XMLHttpRequest();
+  var r = new XMLHttpRequest();
   r.onreadystatechange = function () {
     if (r.readyState == 4) {
-      let t = r.responseText;
+      var t = r.responseText;
       if (t == "success") {
-        let icon = document.getElementById("heart" + id);
+        var icon = document.getElementById("heart" + id);
 
         icon.classList.add("text-danger");
         icon.classList.remove("text-white");
       } else if (t == "success2") {
-        let icon = document.getElementById("heart" + id);
+        var icon = document.getElementById("heart" + id);
 
         icon.classList.remove("text-danger");
         icon.classList.add("text-white");
@@ -611,13 +612,13 @@ function addToWatchlist(id) {
   r.send();
 }
 
-function deleteFromWatchlist(id) {
-  let pid = id;
+function devareFromWatchlist(id) {
+  var pid = id;
 
-  let r = new XMLHttpRequest();
+  var r = new XMLHttpRequest();
   r.onreadystatechange = function () {
     if (r.readyState == 4) {
-      let t = r.responseText;
+      var t = r.responseText;
       if (t == "success") {
         window.location.reload();
       } else {
@@ -625,20 +626,20 @@ function deleteFromWatchlist(id) {
       }
     }
   };
-  r.open("GET", "deleteWatchlistProcess.php?id=" + pid, true);
+  r.open("GET", "devareWatchlistProcess.php?id=" + pid, true);
   r.send();
 }
 
 function basicSearchWatchlist() {
-  let watchlistSearch = document.getElementById("watchlistSearch");
+  var watchlistSearch = document.getElementById("watchlistSearch");
 
-  let f = new FormData();
+  var f = new FormData();
   f.append("txt", watchlistSearch.value);
 
-  let r = new XMLHttpRequest();
+  var r = new XMLHttpRequest();
   r.onreadystatechange = function () {
     if (r.readyState == 4) {
-      let t = r.responseText;
+      var t = r.responseText;
       // console.log(t);
       document.getElementById("results").innerHTML = t;
     }
@@ -650,10 +651,10 @@ function basicSearchWatchlist() {
 
 // Cart
 function addToCart(id) {
-  let r = new XMLHttpRequest();
+  var r = new XMLHttpRequest();
   r.onreadystatechange = function () {
     if (r.readyState == 4) {
-      let t = r.responseText;
+      var t = r.responseText;
       if (t == "Please sign in first.") {
         alert(t);
         window.location = "signInSignUp.php";
@@ -666,17 +667,16 @@ function addToCart(id) {
   r.send();
 }
 
-function deleteFromCart(id) {
-  let c = confirm("Are you sure to delete this product from cart?");
+function devareFromCart(id) {
+  var c = confirm("Are you sure to devare this product from cart?");
   if (c) {
-    let r = new XMLHttpRequest();
+    var r = new XMLHttpRequest();
     r.onreadystatechange = function () {
       if (r.readyState == 4) {
-        let t = r.responseText;
+        var t = r.responseText;
         if (t == "success") {
           // alert("Product Added to the Recents Successfully.");
           alert("Product Removed from the Cart Successfully.");
-
           window.location.reload();
         } else {
           alert(t);
@@ -690,15 +690,15 @@ function deleteFromCart(id) {
 }
 
 function basicSearchCart() {
-  let input = document.getElementById("cartSearchInput");
+  var input = document.getElementById("cartSearchInput");
 
-  let f = new FormData();
+  var f = new FormData();
   f.append("input", input.value);
 
-  let r = new XMLHttpRequest();
+  var r = new XMLHttpRequest();
   r.onreadystatechange = function () {
     if (r.readyState == 4) {
-      let t = r.responseText;
+      var t = r.responseText;
       // document.getElementById("cart_results").innerHTML = "";
       document.getElementById("cart_results").innerHTML = t;
     }
@@ -711,9 +711,335 @@ function basicSearchCart() {
 // INVOICE
 
 function printInvoice() {
-  let restorePage = document.body.innerHTML;
-  let page = document.getElementById("page").innerHTML;
+  var restorePage = document.body.innerHTML;
+  var page = document.getElementById("page").innerHTML;
   document.body.innerHTML = page;
   window.print();
   document.body.innerHTML = restorePage;
+}
+
+// Message
+function viewRecent() {
+  var msgBox = document.getElementById("message_box");
+
+  var r = new XMLHttpRequest();
+
+  r.onreadystatechange = function () {
+    if (r.readyState == 4) {
+      var t = r.responseText;
+      // alert(t);
+    }
+  };
+
+  r.open("GET", "viewRecentMsgProcess.php", true);
+  r.send();
+}
+
+var k;
+
+function adminVerification() {
+  var e = document.getElementById("e");
+
+  var form = new FormData();
+  form.append("e", e.value);
+
+  var r = new XMLHttpRequest();
+
+  r.onreadystatechange = function () {
+    if (r.readyState == 4) {
+      var t = r.responseText;
+      if (t == "success") {
+        var verificationModal = document.getElementById("verification_modal");
+        k = new bootstrap.Modal(verificationModal);
+        k.show();
+      } else {
+        alert(t);
+      }
+    }
+  };
+
+  r.open("POST", "adminVerificationProcess.php", true);
+  r.send(form);
+}
+
+function verify() {
+  var v = document.getElementById("vcode");
+
+  var r = new XMLHttpRequest();
+
+  r.onreadystatechange = function () {
+    if (r.readyState == 4) {
+      var t = r.responseText;
+      if (t == "Success") {
+        k.hide();
+        window.location = "adminPanel.php";
+      } else {
+        alert(t);
+      }
+    }
+  };
+
+  r.open("GET", "verifyProcess.php?id=" + v.value, true);
+  r.send();
+}
+
+var mm;
+
+function viewMsgModal(email) {
+  var m = document.getElementById("viewMsgModal" + email);
+  mm = new bootstrap.Modal(m);
+
+  mm.show();
+}
+
+var pm;
+function viewProductModal(id) {
+  var m = document.getElementById("viewProductModal" + id);
+  pm = new bootstrap.Modal(m);
+
+  pm.show();
+}
+
+var cm;
+function addNewCategory() {
+  var m = document.getElementById("addCategoryModal");
+  cm = new bootstrap.Modal(m);
+
+  cm.show();
+}
+
+var cvm;
+var newCategory;
+var uemail;
+
+function categoryVerifyModal() {
+  newCategory = document.getElementById("n").value;
+  uemail = document.getElementById("e").value;
+
+  var f = new FormData();
+  f.append("n", newCategory);
+  f.append("e", uemail);
+
+  var r = new XMLHttpRequest();
+  r.onreadystatechange = function () {
+    if (r.readyState == 4) {
+      var t = r.responseText;
+      if (t == "success") {
+        var m = document.getElementById("addCategoryModalVerification");
+        cvm = new bootstrap.Modal(m);
+
+        cm.hide();
+        cvm.show();
+      } else {
+        alert(t);
+      }
+    }
+  };
+  r.open("POST", "addNewCategoryProcess.php", true);
+  r.send(f);
+}
+
+function saveCategory() {
+  var txt = document.getElementById("txt").value;
+
+  var f = new FormData();
+  f.append("t", txt);
+  f.append("c", newCategory);
+  f.append("e", uemail);
+
+  var r = new XMLHttpRequest();
+  r.onreadystatechange = function () {
+    if (r.readyState == 4) {
+      var t = r.responseText;
+      if (t == "success") {
+        cvm.hide();
+        alert("New category added.");
+        window.location = "manageproducts.php";
+      } else {
+        alert(t);
+      }
+    }
+  };
+  r.open("POST", "saveNewCategoryProcess.php", true);
+  r.send(f);
+}
+
+function productBlock(id) {
+  var request = new XMLHttpRequest();
+  request.onreadystatechange = function () {
+    if (request.readyState == 4) {
+      var text = request.responseText;
+      window.location = "manageproducts.php";
+    }
+  };
+  request.open("GET", "productBlockProcess.php?id=" + id, true);
+  request.send();
+}
+
+function blockUser(email) {
+  var request = new XMLHttpRequest();
+  request.onreadystatechange = function () {
+    if (request.readyState == 4) {
+      var text = request.responseText;
+      window.location = "manageusers.php";
+    }
+  };
+  request.open("GET", "usersBlockProcess.php?email=" + email, true);
+  request.send();
+}
+
+function changeInvoiceId(id) {
+  var r = new XMLHttpRequest();
+
+  r.onreadystatechange = function () {
+    if (r.readyState == 4) {
+      var t = r.responseText;
+
+      if (t == 1) {
+        // 1 - Packing
+        document.getElementById("btn" + id).innerHTML = "Packing";
+        document.getElementById("btn" + id).classList.remove("btn-success");
+        document.getElementById("btn" + id).classList.add("btn-warning");
+      } else if (t == 2) {
+        // 2 - Dispatch
+        document.getElementById("btn" + id).innerHTML = "Dispatch";
+        document.getElementById("btn" + id).classList.remove("btn-warning");
+        document.getElementById("btn" + id).classList.add("btn-info");
+      } else if (t == 3) {
+        // 3 - Shipping
+        document.getElementById("btn" + id).innerHTML = "Shipping";
+        document.getElementById("btn" + id).classList.remove("btn-info");
+        document.getElementById("btn" + id).classList.add("btn-primary");
+      } else if (t == 4) {
+        // 4 - Delivered
+        document.getElementById("btn" + id).innerHTML = "Delivered";
+        document.getElementById("btn" + id).classList.remove("btn-primary");
+        document.getElementById("btn" + id).classList.add("btn-danger");
+        document.getElementById("btn" + id).setAttribute("disabled", true);
+      }
+    }
+  };
+
+  r.open("GET", "changeInvoiceIdProcess.php?id=" + id, true);
+  r.send();
+}
+
+function invoiveSearch() {
+  var txt = document.getElementById("search");
+  var r = new XMLHttpRequest();
+  r.onreadystatechange = function () {
+    if (r.readyState == 4) {
+      var t = r.responseText;
+      document.getElementById("loadresult").innerHTML = t;
+    }
+  };
+  r.open("GET", "invoiceSearch.php?t=" + txt.value, true);
+  r.send();
+}
+
+function findSelling() {
+  var from = document.getElementById("from");
+  var to = document.getElementById("to");
+
+  var f = new FormData();
+  f.append("f", from.value);
+  f.append("t", to.value);
+
+  var r = new XMLHttpRequest();
+  r.onreadystatechange = function () {
+    if (r.readyState == 4) {
+      var t = r.responseText;
+      document.getElementById("loadresult").innerHTML = t;
+    }
+  };
+  r.open("POST", "findsellingprocess.php", true);
+  r.send(f);
+}
+
+function viewMessage(email) {
+  var r = new XMLHttpRequest();
+  r.onreadystatechange = function () {
+    if (r.readyState == 4) {
+      var t = r.responseText;
+      document.getElementById("chat_box").innerHTML = t;
+    }
+  };
+  r.open("GET", "viewMessageProcess.php?email=" + email, true);
+  r.send();
+}
+
+function sendMessage() {
+  var receiver_mail = document.getElementById("rmail");
+  var msg_txt = document.getElementById("msgTxt");
+
+  var f = new FormData();
+  f.append("r", receiver_mail.innerHTML);
+  f.append("m", msg_txt.value);
+
+  var r = new XMLHttpRequest();
+  r.onreadystatechange = function () {
+    if (r.readyState == 4) {
+      var t = r.responseText;
+      if (t == "success") {
+        window.location = "message.php";
+      } else {
+        alert(t);
+      }
+    }
+  };
+
+  r.open("POST", "sendMsgProcess.php", true);
+  r.send(f);
+}
+
+function saveFeed(pid) {
+  var type;
+  if (document.getElementById("r1").checked) {
+    type = 1;
+  } else if (document.getElementById("r2").checked) {
+    type = 2;
+  } else if (document.getElementById("r3").checked) {
+    type = 3;
+  }
+
+  var email = document.getElementById("e").value;
+  var feedback = document.getElementById("f").value;
+
+  var form = new FormData();
+  form.append("pid", pid);
+  form.append("type", type);
+  form.append("email", email);
+  form.append("feedback", feedback);
+
+  var r = new XMLHttpRequest();
+  r.onreadystatechange = function () {
+    if (r.readyState == 4) {
+      var t = r.responseText;
+      if (t == "success") {
+        window.location = "singleProductView.php?id=" + pid;
+      }
+    }
+  };
+  r.open("POST", "saveFeedbackProcess.php", true);
+  r.send(form);
+}
+
+function buynow(id) {
+  var product_id = id;
+  var product_qty = document.getElementById("qtyinput");
+
+  var f = new FormData();
+  f.append("pid", product_id);
+  f.append("pqty", product_qty.value);
+
+  var r = new XMLHttpRequest();
+  r.onreadystatechange = function () {
+    if (r.readyState == 4) {
+      var t = r.responseText;
+      window.location = "invoice.php?order_id=" + t;
+    }
+  };
+
+  r.open("POST", "buyNowProcess.php", true);
+  r.send(f);
 }

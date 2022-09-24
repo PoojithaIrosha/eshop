@@ -190,6 +190,21 @@ require "connection.php";
                 </div>
             </div>
 
+            <!-- Sorting process -->
+            <div class="offset-lg-2 col-12 col-lg-8 bg-white rounded mb-3 mt-3">
+                <div class="row">
+                    <div class="offset-8 col-4">
+                        <select class="form-select border-0 border-bottom border-primary border-3" id="sort" onchange="advancedSearch(0);">
+                            <option value="0">SORT BY</option>
+                            <option value="1">PRICE LOW TO HIGH</option>
+                            <option value="2">PRICE HIGH TO LOW</option>
+                            <option value="3">QUANTITY LOW TO HIGH</option>
+                            <option value="4">QUANTITY HIGH TO LOW</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
             <!-- Product Listing -->
             <div class="offset-0 offset-lg-2 col-12 col-lg-8 bg-white mt-3 mb-3 rounded" id="results">
                 <div class="row">

@@ -19,14 +19,11 @@ if (isset($_SESSION["u"])) {
         echo "Please enter your last name";
     } else if (empty($mobile)) {
         echo "Please enter your mobile number";
-    } else if (empty($mobile)) {
-        echo "Please enter your mobile number.";
     } else if (strlen($mobile) != 10) {
         echo "Mobile number should contain 10 characters.";
     } else if (preg_match("/07[0,1,2,4,5,6,7,8,][0-9]{7}+/", $mobile) == 0) {
-        echo "Invalid Mobile Number.";
+        echo "Invalid Mobile Number";
     } else {
-
 
         if (isset($img)) {
             $allowed_image_extensions = array("image/jpg", "image/jpeg", "image/png", "image/svg");
@@ -79,6 +76,14 @@ if (isset($_SESSION["u"])) {
         } else {
             // INSERT (save)
             Database::iud("INSERT INTO `user_has_address`(`user_email`,`line1`, `line2`, `city_id`) VALUES ('" . $_SESSION["u"]["email"] . "','" . $addline1 . "', '" . $addline2 . "','" . $city . "')");
+        }
+
+        $user_rs = Database::search("SELECT * FROM `user` WHERE `email`='" . $_SESSION["u"]["email"] . "'");
+        $user_rows = $user_rs->num_rows;
+
+        if ($user_rows == 1) {
+            $user = $user_rs->fetch_assoc();
+            $_SESSION["u"] = $user;
         }
 
         echo "User has been updated.";

@@ -10,9 +10,11 @@ $condition = $_POST["con"];
 $colour = $_POST["col"];
 $price_from = $_POST["pf"];
 $price_to = $_POST["pt"];
+$sort = $_POST["sort"];
 
 $query = "SELECT * FROM product ";
 $status = 0;
+
 
 // Search Text
 if (!empty($search_txt)) {
@@ -93,6 +95,18 @@ if ($status == 0) {
     }
 }
 
+
+// sort
+if ($sort == 1) {
+    $query .= " ORDER BY `price` ASC ";
+} else if ($sort == 2) {
+    $query .= " ORDER BY `price` DESC ";
+} else if ($sort == 3) {
+    $query .= " ORDER BY `qty` ASC ";
+} else if ($sort == 4) {
+    $query .= " ORDER BY `qty` DESC ";
+}
+
 $query1 = $query;
 
 ?>
@@ -102,7 +116,6 @@ $query1 = $query;
         <div class="row">
 
             <?php
-
             // Pagination
             if ($_POST["page"] != "0") {
                 $pageno = $_POST["page"];

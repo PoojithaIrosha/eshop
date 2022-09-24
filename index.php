@@ -12,7 +12,7 @@ require "connection.php";
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>eShop | Home</title>
+    <title>eShop 123 | Home</title>
     <link rel="icon" href="resources/logo.svg" />
     <link rel="stylesheet" href="bootstrap.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
@@ -173,21 +173,21 @@ require "connection.php";
                                                     <!-- Watchlist Button -->
                                                     <?php
 
-                                                    if(isset($_SESSION["u"])) {
+                                                    if (isset($_SESSION["u"])) {
                                                         $watchlistrs = Database::search("SELECT * FROM watchlist WHERE `product_id`='" . $product["id"] . "' AND `user_email`='" . $_SESSION["u"]["email"] . "'");
                                                         if ($watchlistrs->num_rows == 1) {
-                                                            ?>
+                                                    ?>
                                                             <a onclick="addToWatchlist('<?php echo $product['id']; ?>');" class="btn btn-secondary col-12 mt-1"><i class="bi bi-heart-fill text-danger " id="<?php echo "heart" . $product['id']; ?>"></i></a>
-                                                            <?php
+                                                        <?php
                                                         } else {
-                                                            ?>
+                                                        ?>
                                                             <a onclick="addToWatchlist('<?php echo $product['id']; ?>');" class="btn btn-secondary col-12 mt-1"><i class="bi bi-heart-fill text-white" id="<?php echo "heart" . $product['id']; ?>"></i></a>
-                                                            <?php
+                                                        <?php
                                                         }
-                                                    }else {
+                                                    } else {
                                                         ?>
                                                         <a onclick="addToWatchlist('<?php echo $product['id']; ?>');" class="btn btn-secondary col-12 mt-1"><i class="bi bi-heart-fill text-white" id="<?php echo "heart" . $product['id']; ?>"></i></a>
-                                                        <?php
+                                                    <?php
                                                     }
                                                     ?>
                                                     <!-- Watchlist Button -->

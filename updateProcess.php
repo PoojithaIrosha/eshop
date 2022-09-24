@@ -40,12 +40,12 @@ if (empty($t)) {
     echo "Product updated successfully";
 
     $last_id = Database::$connection->insert_id;
-    $allowed_image_extensions = array("image/jpg", "image/png", "image/jpeg", "image/svg", "image/jfif");
+    $allowed_image_extensions = array("¸image/jpg", "image/png", "image/jpeg", "image/svg", "image/jfif");
 
     if (isset($_FILES["i1"])) {
 
 
-        Database::iud("DELETE FROM images WHERE `product_id` = '".$productid."'");
+        Database::iud("DELETE FROM images WHERE `product_id` = '" . $productid . "'");
 
         $images = $_FILES["i1"];
         $file_extension = $images["type"];
@@ -58,7 +58,7 @@ if (empty($t)) {
             $fileName = "resources//products//" . uniqid() . $images["name"];
             move_uploaded_file($images["tmp_name"], $fileName);
 
-            Database::iud("INSERT INTO `images` VALUES ('".$fileName."', '".$productid."')");
+            Database::iud("INSERT INTO `images` VALUES ('" . $fileName . "', '" . $productid . "')");
         }
     }
 
@@ -72,7 +72,7 @@ if (empty($t)) {
             $fileName = "resources//products//" . uniqid() . $images["name"];
             move_uploaded_file($images["tmp_name"], $fileName);
 
-            Database::iud("INSERT INTO `images` VALUES ('".$fileName."', '".$productid."')");
+            Database::iud("INSERT INTO `images` VALUES ('" . $fileName . "', '" . $productid . "')");
         }
     }
 
@@ -86,7 +86,7 @@ if (empty($t)) {
             $fileName = "resources//products//" . uniqid() . $images["name"];
             move_uploaded_file($images["tmp_name"], $fileName);
 
-            Database::iud("INSERT INTO `images` VALUES ('".$fileName."', '".$productid."')");
+            Database::iud("INSERT INTO `images` VALUES ('" . $fileName . "', '" . $productid . "')");
         }
     }
 }

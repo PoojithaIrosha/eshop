@@ -27,7 +27,7 @@ if (isset($_GET["e"])) {
             $mail->Host = 'smtp.gmail.com';
             $mail->SMTPAuth = true;
             $mail->Username = 'andruehudson9311@gmail.com'; // Sender's Email Address
-            $mail->Password = '!h~DHuq/$9311'; // Sender's Email Password
+            $mail->Password = 'tinpmrbqbcedjmme'; // Sender's Email Password
             $mail->SMTPSecure = 'ssl';
             $mail->Port = 465;
             $mail->setFrom('andruehudson9311@gmail.com', 'eShop');
